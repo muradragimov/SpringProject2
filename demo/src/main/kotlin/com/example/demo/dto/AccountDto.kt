@@ -3,14 +3,12 @@ package com.example.demo.dto
 import jakarta.persistence.Id
 import jakarta.validation.constraints.NotBlank
 
-data class AccountDto(
-    @NotBlank(message = "Username cannot be blank")
-    val username: String,
+class AccountDto(
 
-    @NotBlank(message = "Password cannot be blank")
-    val password: String,
+    var username: String?,
 
-    val isActive: Boolean = true,
+    var password: String?,
 
-    val customer: CustomerDto
+    var isActive: Boolean? = true,
+
 )

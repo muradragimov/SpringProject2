@@ -1,5 +1,6 @@
 package com.example.demo.service
 
+import com.example.demo.dto.AccountDto
 import com.example.demo.dto.CustomerDto
 import com.example.demo.mapper.CustomerMapper
 import com.example.demo.model.CustomerEntity
@@ -15,8 +16,9 @@ class CustomerService (
     private val repository: CustomerRepository
 ){
 
-    fun findAll(){
-        repository.findAll();
+    fun findAll () : List<CustomerDto>{
+       val customerDtos : List<CustomerDto> = CustomerMapper.INSTANCE.mapToDtos(repository.findAll())
+       return customerDtos;
     }
 
     fun save(customerDto: CustomerDto){
@@ -24,10 +26,11 @@ class CustomerService (
         repository.save(customerEntity)
     }
 
-    fun update(customerDto: CustomerDto, id: Long){
-        val teacherEntity: CustomerEntity =
-            CustomerMapper.INSTANCE.buildEntity(customerDto, getElemetById(id))
-        repository.save(teacherEntity)
+    fun update(accountDto: AccountDto, id: Long){
+        val customerEntity: CustomerEntity =
+            CustomerMapper.INSTANCE.buildEntity(accountDto, getElemetById(id))
+
+        repository.save(customerEntity)
     }
 
     private fun getElemetById(id: Long): CustomerEntity {

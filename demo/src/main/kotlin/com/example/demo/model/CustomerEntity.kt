@@ -26,7 +26,7 @@ class CustomerEntity (
     @UpdateTimestamp
     var updatedAt: LocalDateTime? = null,
 
-    @OneToMany(mappedBy = "customer", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var accounts: MutableList<AccountEntity>? = mutableListOf()
-) {
-}
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    var accounts: MutableList<AccountEntity>? = mutableListOf()/**/
+)

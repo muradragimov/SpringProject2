@@ -6,19 +6,19 @@ import jakarta.persistence.*
 class AccountEntity (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    var id: Long = 0,
 
     @Column(name = "AccountUsername", length = 100)
-    val username: String? = null,
+    var username: String? = null,
 
     @Column(name = "AccountPassword", length = 100)
-    val password: String? = null,
+    var password: String? = null,
 
     @Column(name = "isActive", length = 100)
-    val isActive: Boolean = true,
+    var isActive: Boolean = true,
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    val customer: CustomerEntity? = null
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    var transactions : MutableList<TransactionEntity>? = mutableListOf()
 ){
 }

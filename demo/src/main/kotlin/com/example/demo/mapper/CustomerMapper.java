@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.AccountDto;
 import com.example.demo.dto.CustomerDto;
+import com.example.demo.model.AccountEntity;
 import com.example.demo.model.CustomerEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
 public interface CustomerMapper {
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
-    List<CustomerDto> mapToDto(List<CustomerEntity> studentEntity);
+    List<CustomerDto> mapToDtos(List<CustomerEntity> studentEntity);
 
     @Mappings(value = {
             @Mapping(target = "id", ignore =true),
@@ -25,13 +27,11 @@ public interface CustomerMapper {
 
     CustomerDto mapToDto(CustomerEntity customerEntity);
 
-    default CustomerEntity buildEntity(CustomerDto customerDto, CustomerEntity customerEntity){
+    default CustomerEntity buildEntity(AccountDto accountDto, CustomerEntity customerEntity){
 
-        customerEntity.setName(customerDto.getName());
-        customerEntity.setAccounts(customerDto.getAccounts()
-                .stream()
-                .map(AccountMapper.INSTANCE::mapToEntity)
-                .collect(Collectors.toList()));
+        AccountEntity accountEntity = AccountMapper.INSTANCE.mapToEntity(accountDto);
+
+        customerEntity.getAccounts().add(accountEntity);
 
         return customerEntity;
     }
