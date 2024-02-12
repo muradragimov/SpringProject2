@@ -28,7 +28,6 @@ class CustomerService (
             CustomerMapper.INSTANCE.buildEntity(accountDto, getElemetById(id))
 
         repository.save(customerEntity)
-        println(customerEntity.accounts)
     }
 
     private fun getElemetById(id: Long): Customer {

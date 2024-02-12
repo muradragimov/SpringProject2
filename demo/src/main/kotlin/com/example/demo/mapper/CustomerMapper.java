@@ -32,8 +32,6 @@ public interface CustomerMapper {
 
         customerEntity.getAccounts().add(accountEntity);
 
-        System.out.println(customerEntity.getAccounts());
-
         return customerEntity;
     }
 }
