@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/abouts")
+@RequestMapping("/v1/customers")
 public class CustomerController {
 
     private final CustomerService service;
@@ -34,4 +34,5 @@ public class CustomerController {
     public void update(@RequestBody @Valid AccountDto accountDto, @PathVariable Integer id) {
         service.update(accountDto, id);
     }
+
 }

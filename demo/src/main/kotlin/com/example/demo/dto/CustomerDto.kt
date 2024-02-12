@@ -1,18 +1,17 @@
 package com.example.demo.dto
 
+import com.example.demo.model.Account
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Column
 import jakarta.validation.constraints.NotBlank
 import org.hibernate.validator.constraints.Length
 
 
-class CustomerDto (
+data class CustomerDto (
 
-    var name: String ?,
+    var name: String?,
 
-    /*var accounts : List<AccountDto>*/
-    /*){
-    init {
-        requireNotNull(name) { "Name must not be null" }
-        requireNotNull(email) { "Email must not be null" }
-    }*/
+    var surname: String?,
+
+    var accountDtos: MutableList<AccountDto>?
 )

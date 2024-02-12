@@ -1,7 +1,7 @@
 package com.example.demo.repository
 
-import com.example.demo.model.TransactionEntity
+import com.example.demo.model.Transaction
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface TransactionRepository : JpaRepository<TransactionEntity, Long> {
+interface TransactionRepository : JpaRepository<Transaction, Long> {
 }

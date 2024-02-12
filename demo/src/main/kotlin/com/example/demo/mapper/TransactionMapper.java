@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.TransactionDto;
-import com.example.demo.model.TransactionEntity;
+import com.example.demo.model.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -14,12 +14,13 @@ public interface TransactionMapper {
 
     TransactionMapper TRANSACTION_MAPPER = Mappers.getMapper(TransactionMapper.class);
 
-    List<TransactionDto> mapToDtos(List<TransactionEntity> transactionEntities);
+    List<TransactionDto> mapToDtos(List<Transaction> transactionEntities);
 
     @Mappings(value = {
-            @Mapping(target = "id", ignore = true)
+            @Mapping(target = "id", ignore = true),
+            @Mapping(target = "transactionTime", ignore = true)
     })
-    TransactionEntity mapToEntity(TransactionDto transactionDto);
+    Transaction mapToEntity(TransactionDto transactionDto);
 
-    TransactionDto mapToDto(TransactionEntity transactionEntity);
+    TransactionDto mapToDto(Transaction transactionEntity);
 }
