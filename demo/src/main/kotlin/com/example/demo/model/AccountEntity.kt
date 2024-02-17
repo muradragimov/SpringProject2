@@ -17,8 +17,11 @@ class AccountEntity (
     @Column(name = "isActive", length = 100)
     var isActive: Boolean = true,
 
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    var transactions : MutableList<TransactionEntity>? = mutableListOf()
+    @OneToMany(mappedBy = "accountEntity", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    var transactions : MutableList<TransactionEntity>? = mutableListOf(),
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    var accountEntity: CustomerEntity? = null
 ){
 }

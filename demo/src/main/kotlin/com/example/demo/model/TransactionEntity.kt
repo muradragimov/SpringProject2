@@ -17,5 +17,9 @@ data class TransactionEntity(
     var currency: String? = null,
 
     @CreationTimestamp
-    var transactionTime: LocalDateTime? = null
+    var transactionTime: LocalDateTime? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    var accountEntity: AccountEntity? = null
 )
