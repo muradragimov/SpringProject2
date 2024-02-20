@@ -6,7 +6,6 @@ import com.example.demo.exception.NotFoundException
 import com.example.demo.mapper.AccountMapper
 import com.example.demo.mapper.CustomerMapper
 import com.example.demo.mapper.TransactMapper
-//import com.example.demo.mapper.CustomerMapper
 import com.example.demo.model.Account
 import com.example.demo.repository.AccountRepository
 import org.springframework.stereotype.Service
@@ -33,8 +32,6 @@ class AccountService (
         val account : Account = AccountMapper.INSTANCE.mapToEntity(accountDto)
 
         account.customer = CustomerMapper.INSTANCE.mapToEntity(accountDto.customerDto)
-
-        print("*************" + account)
 
         repository.save(account)
 
