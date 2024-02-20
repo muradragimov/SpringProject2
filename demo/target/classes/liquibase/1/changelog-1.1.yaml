@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create accounts table
+      author: Murad
+      changes:
+        - createTable:
+            tableName: accounts
+            columns:
+              - column:
+                  name: id
+                  type: INTEGER
+                  constraints:
+                    primaryKey: true
+                    autoIncrement: true
+              - column:
+                  name: balance
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creation_date
+                  type: DATETIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: customer_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_accounts_to_customers
+                    references: customers(id)
