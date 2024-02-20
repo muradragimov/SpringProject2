@@ -1,14 +1,14 @@
 package com.example.demo.dto
 
-import jakarta.persistence.Id
-import jakarta.validation.constraints.NotBlank
+import com.fasterxml.jackson.annotation.JsonIgnore
+import java.math.BigDecimal
 
-class AccountDto(
+data class AccountDto(
 
-    var username: String?,
+    var balance: BigDecimal?,
 
-    var password: String?,
+    var customerDto: CustomerDto?,
 
-    var isActive: Boolean? = true,
-
+    @JsonIgnore
+    var transactionDtos : MutableList<TransactDto>? = mutableListOf()
 )

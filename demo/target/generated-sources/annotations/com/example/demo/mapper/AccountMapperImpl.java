@@ -1,66 +1,62 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.AccountDto;
-import com.example.demo.model.AccountEntity;
+import com.example.demo.dto.CustomerDto;
+import com.example.demo.dto.TransactDto;
+import com.example.demo.model.Account;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-02-17T12:37:28+0400",
+    date = "2024-02-20T13:04:08+0400",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
 )
 public class AccountMapperImpl implements AccountMapper {
 
     @Override
-    public List<AccountDto> mapToDtos(List<AccountEntity> accountEntity) {
+    public List<AccountDto> mapToDtos(List<Account> accountEntity) {
         if ( accountEntity == null ) {
             return null;
         }
 
         List<AccountDto> list = new ArrayList<AccountDto>( accountEntity.size() );
-        for ( AccountEntity accountEntity1 : accountEntity ) {
-            list.add( mapToDto( accountEntity1 ) );
+        for ( Account account : accountEntity ) {
+            list.add( mapToDto( account ) );
         }
 
         return list;
     }
 
     @Override
-    public AccountEntity mapToEntity(AccountDto accountDto) {
+    public Account mapToEntity(AccountDto accountDto) {
         if ( accountDto == null ) {
             return null;
         }
 
-        AccountEntity accountEntity = new AccountEntity();
+        Account account = new Account();
 
-        accountEntity.setUsername( accountDto.getUsername() );
-        accountEntity.setPassword( accountDto.getPassword() );
-        if ( accountDto.isActive() != null ) {
-            accountEntity.setActive( accountDto.isActive() );
-        }
+        account.setBalance( accountDto.getBalance() );
 
-        return accountEntity;
+        return account;
     }
 
     @Override
-    public AccountDto mapToDto(AccountEntity accountEntity) {
-        if ( accountEntity == null ) {
+    public AccountDto mapToDto(Account account) {
+        if ( account == null ) {
             return null;
         }
 
-        String username = null;
-        String password = null;
+        BigDecimal balance = null;
 
-        username = accountEntity.getUsername();
-        password = accountEntity.getPassword();
+        balance = account.getBalance();
 
-        Boolean isActive = null;
+        CustomerDto customerDto = null;
+        List<TransactDto> transactionDtos = null;
 
-        AccountDto accountDto = new AccountDto( username, password, isActive );
-
-        accountDto.setActive( accountEntity.isActive() );
+        AccountDto accountDto = new AccountDto( balance, customerDto, transactionDtos );
 
         return accountDto;
     }
